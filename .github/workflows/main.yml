@@ -25,17 +25,22 @@ jobs:
           plutil -lint BigSurface/BigSurface.xcodeproj/project.pbxproj
           plutil -lint BigSurface/BigSurface/Info.plist
 
-      - name: Inspect required dependencies
+      - name: Inspect upstream dependencies
         shell: bash
         run: |
-          echo "=== Git submodule configuration ==="
-          cat .gitmodules || true
-          echo "=== Available dependencies ==="
-          for dir in MacKernelSDK Dependencies/*; do
-            if [ -d "$dir" ]; then
-              echo "$dir"
-              ls -la "$dir" | head -8
-            fi
-          done
+          git clone --branch dev --recurse-submodules \
+            https://github.com/Xiashangning/BigSurface.git \
+            /tmp/BigSurface-upstream
+
+          echo "=== Upstream submodules ==="
+          cat /tmp/BigSurface-upstream/.gitmodules
+
+          echo "=== Submodule status ==="
+          git -C /tmp/BigSurface-upstream submodule status --recursive
+
+          echo "=== Upstream commit ==="
+          git -C /tmp/BigSurface-upstream rev-parse HEAD
+
           echo "=== Xcode targets ==="
           xcodebuild -list -project BigSurface/BigSurface.xcodeproj
+
