@@ -94,11 +94,10 @@ jobs:
           cp -R /tmp/BigSurface-upstream/Dependencies/. Dependencies/
 
           cp -R /tmp/BigSurface-upstream/MacKernelSDK ./MacKernelSDK
-          echo "=== Check Lilu and VirtualSMC SDKs ==="
-          find Dependencies -name kern_util.hpp -o -name kern_vsmcapi.hpp
-          find Dependencies -maxdepth 3 -iname '*lilu*' -o -iname '*virtualsmc*'
-          echo "=== MacKernelSDK ==="
-          ls -la /tmp/BigSurface-upstream/MacKernelSDK
+          echo "=== Check Lilu header ==="
+          find Dependencies -name kern_util.hpp -print
+          echo "=== Check Lilu resources ==="
+          ls -la Dependencies/Lilu.kext/Contents/Resources/ || true
 
           echo "=== Kernel headers ==="
           find /tmp/BigSurface-upstream/MacKernelSDK -name IOCommandGate.h -o -name IOACPIPlatformDevice.h -o -name mach_types.h
