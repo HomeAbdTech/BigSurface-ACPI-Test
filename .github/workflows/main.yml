@@ -94,9 +94,9 @@ jobs:
           cp -R /tmp/BigSurface-upstream/Dependencies/. Dependencies/
 
           cp -R /tmp/BigSurface-upstream/MacKernelSDK ./MacKernelSDK
-          echo "=== Locate kern_util.hpp ==="
-          find Dependencies MacKernelSDK /tmp/BigSurface-upstream -name kern_util.hpp -print
-
+          echo "=== Check Lilu and VirtualSMC SDKs ==="
+          find Dependencies -name kern_util.hpp -o -name kern_vsmcapi.hpp
+          find Dependencies -maxdepth 3 -iname '*lilu*' -o -iname '*virtualsmc*'
           echo "=== MacKernelSDK ==="
           ls -la /tmp/BigSurface-upstream/MacKernelSDK
 
