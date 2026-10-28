@@ -1,0 +1,41 @@
+name: BigSurface Build Diagnostics
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: macos-15
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Check Xcode
+        run: |
+          xcodebuild -version
+          xcrun --sdk macosx --show-sdk-version
+
+      - name: Validate project
+        run: |
+          plutil -lint BigSurface/BigSurface.xcodeproj/project.pbxproj
+          plutil -lint BigSurface/BigSurface/Info.plist
+
+      - name: Inspect required dependencies
+        shell: bash
+        run: |
+          echo "=== Git submodule configuration ==="
+          cat .gitmodules || true
+          echo "=== Available dependencies ==="
+          for dir in MacKernelSDK Dependencies/*; do
+            if [ -d "$dir" ]; then
+              echo "$dir"
+              ls -la "$dir" | head -8
+            fi
+          done
+          echo "=== Xcode targets ==="
+          xcodebuild -list -project BigSurface/BigSurface.xcodeproj
