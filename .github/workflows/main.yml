@@ -90,7 +90,7 @@ jobs:
             /tmp/BigSurface-upstream
 
           mkdir -p Dependencies
-          cp -R /tmp/BigSurface-upstream/Dependencies/. Dependencies/
+          cp -R /tmp/BigSurface-upstream/MacKernelSDK ./MacKernelSDK
           echo "=== MacKernelSDK ==="
           ls -la /tmp/BigSurface-upstream/MacKernelSDK
           echo "=== Kernel headers ==="
