@@ -94,10 +94,19 @@ jobs:
           cp -R /tmp/BigSurface-upstream/Dependencies/. Dependencies/
 
           cp -R /tmp/BigSurface-upstream/MacKernelSDK ./MacKernelSDK
-          echo "=== Check Lilu header ==="
-          find Dependencies -name kern_util.hpp -print
-          echo "=== Check Lilu resources ==="
-          ls -la Dependencies/Lilu.kext/Contents/Resources/ || true
+          echo "=== Install Lilu SDK ==="
+          git clone --depth 1 https://github.com/acidanthera/Lilu.git /tmp/Lilu
+          mkdir -p Dependencies/Lilu.kext/Contents/Resources
+          cp -R /tmp/Lilu/Lilu/Headers Dependencies/Lilu.kext/Contents/Resources/
+          
+          echo "=== Install VirtualSMC SDK ==="
+          git clone --depth 1 https://github.com/acidanthera/VirtualSMC.git /tmp/VirtualSMC
+          mkdir -p Dependencies/VirtualSMC.kext/Contents/Resources
+          cp -R /tmp/VirtualSMC/VirtualSMCSDK Dependencies/VirtualSMC.kext/Contents/Resources/
+          
+          echo "=== Verify required headers ==="
+          test -f Dependencies/Lilu.kext/Contents/Resources/Headers/kern_util.hpp
+          test -f Dependencies/VirtualSMC.kext/Contents/Resources/VirtualSMCSDK/kern_vsmcapi.hpp
 
           echo "=== Kernel headers ==="
           find /tmp/BigSurface-upstream/MacKernelSDK -name IOCommandGate.h -o -name IOACPIPlatformDevice.h -o -name mach_types.h
