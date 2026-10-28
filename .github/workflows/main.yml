@@ -94,6 +94,8 @@ jobs:
           cp -R /tmp/BigSurface-upstream/Dependencies/. Dependencies/
 
           cp -R /tmp/BigSurface-upstream/MacKernelSDK ./MacKernelSDK
+          echo "=== Locate kern_util.hpp ==="
+          find Dependencies MacKernelSDK /tmp/BigSurface-upstream -name kern_util.hpp -print
 
           echo "=== MacKernelSDK ==="
           ls -la /tmp/BigSurface-upstream/MacKernelSDK
