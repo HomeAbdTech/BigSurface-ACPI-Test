@@ -91,7 +91,13 @@ jobs:
 
           mkdir -p Dependencies
           cp -R /tmp/BigSurface-upstream/Dependencies/. Dependencies/
-
+          echo "=== MacKernelSDK ==="
+          ls -la /tmp/BigSurface-upstream/MacKernelSDK
+          echo "=== Kernel headers ==="
+          find /tmp/BigSurface-upstream/MacKernelSDK -name IOCommandGate.h -o -name IOACPIPlatformDevice.h -o -name mach_types.h
+          echo "=== Project SDK references ==="
+          grep -nE 'MacKernelSDK|KERNEL_EXTENSION_HEADER_SEARCH_PATHS|KERNEL_FRAMEWORK_HEADERS|HEADER_SEARCH_PATHS' BigSurface/BigSurface.xcodeproj/project.pbxproj || true
+          
       - name: Build experimental kext
         shell: bash
         run: |
