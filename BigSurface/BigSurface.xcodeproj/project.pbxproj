@@ -1,0 +1,926 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 54;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2518A2F62734F6AA00B0D631 /* SurfaceAmbientLightSensorDriver.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2518A2F32734F6AA00B0D631 /* SurfaceAmbientLightSensorDriver.hpp */; };
+		2518A2F72734F6AA00B0D631 /* SurfaceAmbientLightSensorDriver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2518A2F42734F6AA00B0D631 /* SurfaceAmbientLightSensorDriver.cpp */; };
+		2518A2F82734F6AA00B0D631 /* APDS9960Constants.h in Headers */ = {isa = PBXBuildFile; fileRef = 2518A2F52734F6AA00B0D631 /* APDS9960Constants.h */; };
+		2524C0A626F3233A00CAAF12 /* SurfaceButtonDriver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2524C0A426F3233A00CAAF12 /* SurfaceButtonDriver.cpp */; };
+		2524C0A726F3233A00CAAF12 /* SurfaceButtonDriver.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2524C0A526F3233A00CAAF12 /* SurfaceButtonDriver.hpp */; };
+		25506BAA29929D7A007F59BF /* helpers.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 25506BA929929D7A007F59BF /* helpers.hpp */; };
+		259040E926FC065400D605D0 /* SurfaceButtonDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 259040E726FC065400D605D0 /* SurfaceButtonDevice.cpp */; };
+		259040EA26FC065400D605D0 /* SurfaceButtonDevice.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 259040E826FC065400D605D0 /* SurfaceButtonDevice.hpp */; };
+		259040EC26FC0BB200D605D0 /* HIDReport.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 259040EB26FC0BB200D605D0 /* HIDReport.hpp */; };
+		2597317D2738B01F00A7F7C1 /* KeyImplementations.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 259731702738B01F00A7F7C1 /* KeyImplementations.hpp */; };
+		2597317E2738B01F00A7F7C1 /* SurfaceACAdapter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 259731712738B01F00A7F7C1 /* SurfaceACAdapter.cpp */; };
+		2597317F2738B01F00A7F7C1 /* SurfaceBatteryDriver.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 259731722738B01F00A7F7C1 /* SurfaceBatteryDriver.hpp */; };
+		259731812738B01F00A7F7C1 /* BatteryManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 259731742738B01F00A7F7C1 /* BatteryManager.cpp */; };
+		259731822738B01F00A7F7C1 /* SurfaceBattery.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 259731752738B01F00A7F7C1 /* SurfaceBattery.cpp */; };
+		259731832738B01F00A7F7C1 /* SurfaceBattery.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 259731762738B01F00A7F7C1 /* SurfaceBattery.hpp */; };
+		259731842738B01F00A7F7C1 /* BatteryManagerState.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 259731772738B01F00A7F7C1 /* BatteryManagerState.hpp */; };
+		259731852738B01F00A7F7C1 /* KeyImplementations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 259731782738B01F00A7F7C1 /* KeyImplementations.cpp */; };
+		259731862738B01F00A7F7C1 /* SurfaceACAdapter.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 259731792738B01F00A7F7C1 /* SurfaceACAdapter.hpp */; };
+		259731882738B01F00A7F7C1 /* SurfaceBatteryDriver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2597317B2738B01F00A7F7C1 /* SurfaceBatteryDriver.cpp */; };
+		259731892738B01F00A7F7C1 /* BatteryManager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2597317C2738B01F00A7F7C1 /* BatteryManager.hpp */; };
+		2597318C2738B2BA00A7F7C1 /* SurfaceSMBusController.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2597318A2738B2BA00A7F7C1 /* SurfaceSMBusController.hpp */; };
+		2597318D2738B2BA00A7F7C1 /* SurfaceSMBusController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2597318B2738B2BA00A7F7C1 /* SurfaceSMBusController.cpp */; };
+		25B97D89260B950E00657C76 /* libkmod.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BE66D8F258AC5DC003CA4AD /* libkmod.a */; };
+		25C8D7EB27359FCD00F58956 /* SerialProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 25C8D7E827359FCD00F58956 /* SerialProtocol.h */; };
+		25C8D7EC27359FCD00F58956 /* SurfaceSerialHubDriver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25C8D7E927359FCD00F58956 /* SurfaceSerialHubDriver.cpp */; };
+		25C8D7ED27359FCD00F58956 /* SurfaceSerialHubDriver.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 25C8D7EA27359FCD00F58956 /* SurfaceSerialHubDriver.hpp */; };
+		25D907292736E2B2006D799F /* AmbientLightValue.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 25D907272736E2B2006D799F /* AmbientLightValue.hpp */; };
+		25D9072A2736E2B2006D799F /* AmbientLightValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25D907282736E2B2006D799F /* AmbientLightValue.cpp */; };
+		25DBA9742836A77700459629 /* SurfaceHIDNub.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25DBA9722836A77700459629 /* SurfaceHIDNub.cpp */; };
+		25DBA9752836A77700459629 /* SurfaceHIDNub.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 25DBA9732836A77700459629 /* SurfaceHIDNub.hpp */; };
+		25E5B4CB2991ACE7007F21D4 /* SurfaceManagementEngineClient.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 25E5B4C62991ACE7007F21D4 /* SurfaceManagementEngineClient.hpp */; };
+		25E5B4CC2991ACE7007F21D4 /* SurfaceManagementEngineDriver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25E5B4C72991ACE7007F21D4 /* SurfaceManagementEngineDriver.cpp */; };
+		25E5B4CD2991ACE7007F21D4 /* SurfaceManagementEngineDriver.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 25E5B4C82991ACE7007F21D4 /* SurfaceManagementEngineDriver.hpp */; };
+		25E5B4CE2991ACE7007F21D4 /* MEIProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 25E5B4C92991ACE7007F21D4 /* MEIProtocol.h */; };
+		25E5B4CF2991ACE7007F21D4 /* SurfaceManagementEngineClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25E5B4CA2991ACE7007F21D4 /* SurfaceManagementEngineClient.cpp */; };
+		25EA2A7E2836412B00525325 /* SurfaceBatteryNub.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25EA2A7C2836412B00525325 /* SurfaceBatteryNub.cpp */; };
+		25EA2A7F2836412B00525325 /* SurfaceBatteryNub.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 25EA2A7D2836412B00525325 /* SurfaceBatteryNub.hpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		25CBB35F2733D4C1009B568B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 25B97DB8260B971000657C76 /* VoodooGPIO.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F1F172C51F42263A00AD98FA;
+			remoteInfo = VoodooGPIO;
+		};
+		25CBB3642733D4C9009B568B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 25813612272D6A2800EED5C9 /* VoodooSerial.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 25813607272D6A2800EED5C9;
+			remoteInfo = VoodooSerial;
+		};
+		25CBB36A2733D50A009B568B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 25813612272D6A2800EED5C9 /* VoodooSerial.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 25B97D6F260B950E00657C76;
+			remoteInfo = VoodooSerial;
+		};
+		25CDE61D285F291D003FB4C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 25CDE619285F291D003FB4C4 /* VoodooInput.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7BBAB1F922E3A2F800B2941A;
+			remoteInfo = VoodooInput;
+		};
+		25CDE625285F2972003FB4C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 25CDE619285F291D003FB4C4 /* VoodooInput.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 7BBAB1F822E3A2F800B2941A;
+			remoteInfo = VoodooInput;
+		};
+		25D49D8E2854EE92008CAAA5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 25B97DB8260B971000657C76 /* VoodooGPIO.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F1F172C41F42263A00AD98FA;
+			remoteInfo = VoodooGPIO;
+		};
+		25E5B47929919DCC007F21D4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 25E5B47529919DCB007F21D4 /* BigSurfaceHIDDriver.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 25E5B46829919DCB007F21D4;
+			remoteInfo = BigSurfaceHIDDriver;
+		};
+		25E5B47E29919F2C007F21D4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 25E5B47529919DCB007F21D4 /* BigSurfaceHIDDriver.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 25E5B46729919DCB007F21D4;
+			remoteInfo = BigSurfaceHIDDriver;
+		};
+		AC94C83C2119E50400D26081 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AC94C8382119E50400D26081 /* VoodooI2CSynaptics.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = ACD148A21FF17DE00008EA7B;
+			remoteInfo = VoodooI2CSynaptics;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2518A2F32734F6AA00B0D631 /* SurfaceAmbientLightSensorDriver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SurfaceAmbientLightSensorDriver.hpp; sourceTree = "<group>"; };
+		2518A2F42734F6AA00B0D631 /* SurfaceAmbientLightSensorDriver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SurfaceAmbientLightSensorDriver.cpp; sourceTree = "<group>"; };
+		2518A2F52734F6AA00B0D631 /* APDS9960Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APDS9960Constants.h; sourceTree = "<group>"; };
+		2524C0A426F3233A00CAAF12 /* SurfaceButtonDriver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SurfaceButtonDriver.cpp; sourceTree = "<group>"; };
+		2524C0A526F3233A00CAAF12 /* SurfaceButtonDriver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SurfaceButtonDriver.hpp; sourceTree = "<group>"; };
+		25506BA929929D7A007F59BF /* helpers.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; path = helpers.hpp; sourceTree = "<group>"; };
+		25813612272D6A2800EED5C9 /* VoodooSerial.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VoodooSerial.xcodeproj; path = VoodooSerial/VoodooSerial.xcodeproj; sourceTree = "<group>"; };
+		259040E726FC065400D605D0 /* SurfaceButtonDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SurfaceButtonDevice.cpp; sourceTree = "<group>"; };
+		259040E826FC065400D605D0 /* SurfaceButtonDevice.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SurfaceButtonDevice.hpp; sourceTree = "<group>"; };
+		259040EB26FC0BB200D605D0 /* HIDReport.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HIDReport.hpp; sourceTree = "<group>"; };
+		259731702738B01F00A7F7C1 /* KeyImplementations.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = KeyImplementations.hpp; sourceTree = "<group>"; };
+		259731712738B01F00A7F7C1 /* SurfaceACAdapter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SurfaceACAdapter.cpp; sourceTree = "<group>"; };
+		259731722738B01F00A7F7C1 /* SurfaceBatteryDriver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SurfaceBatteryDriver.hpp; sourceTree = "<group>"; };
+		259731742738B01F00A7F7C1 /* BatteryManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BatteryManager.cpp; sourceTree = "<group>"; };
+		259731752738B01F00A7F7C1 /* SurfaceBattery.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SurfaceBattery.cpp; sourceTree = "<group>"; };
+		259731762738B01F00A7F7C1 /* SurfaceBattery.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SurfaceBattery.hpp; sourceTree = "<group>"; };
+		259731772738B01F00A7F7C1 /* BatteryManagerState.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BatteryManagerState.hpp; sourceTree = "<group>"; };
+		259731782738B01F00A7F7C1 /* KeyImplementations.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KeyImplementations.cpp; sourceTree = "<group>"; };
+		259731792738B01F00A7F7C1 /* SurfaceACAdapter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SurfaceACAdapter.hpp; sourceTree = "<group>"; };
+		2597317B2738B01F00A7F7C1 /* SurfaceBatteryDriver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SurfaceBatteryDriver.cpp; sourceTree = "<group>"; };
+		2597317C2738B01F00A7F7C1 /* BatteryManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BatteryManager.hpp; sourceTree = "<group>"; };
+		2597318A2738B2BA00A7F7C1 /* SurfaceSMBusController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SurfaceSMBusController.hpp; sourceTree = "<group>"; };
+		2597318B2738B2BA00A7F7C1 /* SurfaceSMBusController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SurfaceSMBusController.cpp; sourceTree = "<group>"; };
+		25B97DA5260B950E00657C76 /* BigSurface.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BigSurface.kext; sourceTree = BUILT_PRODUCTS_DIR; };
+		25B97DB8260B971000657C76 /* VoodooGPIO.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VoodooGPIO.xcodeproj; path = VoodooGPIO/VoodooGPIO.xcodeproj; sourceTree = "<group>"; };
+		25B97E43260BA33B00657C76 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		25C8D7E827359FCD00F58956 /* SerialProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerialProtocol.h; sourceTree = "<group>"; };
+		25C8D7E927359FCD00F58956 /* SurfaceSerialHubDriver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SurfaceSerialHubDriver.cpp; sourceTree = "<group>"; };
+		25C8D7EA27359FCD00F58956 /* SurfaceSerialHubDriver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SurfaceSerialHubDriver.hpp; sourceTree = "<group>"; };
+		25CDE619285F291D003FB4C4 /* VoodooInput.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VoodooInput.xcodeproj; path = VoodooInput/VoodooInput.xcodeproj; sourceTree = "<group>"; };
+		25D9064A2736DB7F006D799F /* kern_smcinfo.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = kern_smcinfo.hpp; sourceTree = "<group>"; };
+		25D9064B2736DB7F006D799F /* kern_vsmcapi.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = kern_vsmcapi.hpp; sourceTree = "<group>"; };
+		25D9064C2736DB7F006D799F /* AppleSmc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleSmc.h; sourceTree = "<group>"; };
+		25D9064D2736DB7F006D799F /* kern_keyvalue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = kern_keyvalue.hpp; sourceTree = "<group>"; };
+		25D9064E2736DB7F006D799F /* kern_value.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = kern_value.hpp; sourceTree = "<group>"; };
+		25D9064F2736DB7F006D799F /* AppleSmcBridge.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AppleSmcBridge.hpp; sourceTree = "<group>"; };
+		25D906F92736E125006D799F /* kern_config.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = kern_config.hpp; sourceTree = "<group>"; };
+		25D906FA2736E125006D799F /* hde64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hde64.h; sourceTree = "<group>"; };
+		25D906FB2736E125006D799F /* kern_time.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = kern_time.hpp; sourceTree = "<group>"; };
+		25D906FC2736E125006D799F /* kern_nvram.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = kern_nvram.hpp; sourceTree = "<group>"; };
+		25D906FD2736E125006D799F /* kern_cpu.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = kern_cpu.hpp; sourceTree = "<group>"; };
+		25D906FE2736E125006D799F /* kern_devinfo.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = kern_devinfo.hpp; sourceTree = "<group>"; };
+		25D906FF2736E125006D799F /* kern_efi.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = kern_efi.hpp; sourceTree = "<group>"; };
+		25D907002736E125006D799F /* kern_policy.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = kern_policy.hpp; sourceTree = "<group>"; };
+		25D907012736E125006D799F /* kern_user.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = kern_user.hpp; sourceTree = "<group>"; };
+		25D907022736E125006D799F /* plugin_start.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = plugin_start.hpp; sourceTree = "<group>"; };
+		25D907032736E125006D799F /* kern_iokit.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = kern_iokit.hpp; sourceTree = "<group>"; };
+		25D907042736E125006D799F /* kern_crypto.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = kern_crypto.hpp; sourceTree = "<group>"; };
+		25D907052736E125006D799F /* kern_mach.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = kern_mach.hpp; sourceTree = "<group>"; };
+		25D907062736E125006D799F /* kern_version.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = kern_version.hpp; sourceTree = "<group>"; };
+		25D907072736E125006D799F /* kern_compression.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = kern_compression.hpp; sourceTree = "<group>"; };
+		25D907082736E125006D799F /* kern_file.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = kern_file.hpp; sourceTree = "<group>"; };
+		25D907092736E125006D799F /* kern_rtc.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = kern_rtc.hpp; sourceTree = "<group>"; };
+		25D9070A2736E125006D799F /* kern_disasm.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = kern_disasm.hpp; sourceTree = "<group>"; };
+		25D9070C2736E125006D799F /* capstone.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = capstone.h; sourceTree = "<group>"; };
+		25D9070D2736E125006D799F /* mips.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mips.h; sourceTree = "<group>"; };
+		25D9070E2736E125006D799F /* sparc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sparc.h; sourceTree = "<group>"; };
+		25D9070F2736E125006D799F /* systemz.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = systemz.h; sourceTree = "<group>"; };
+		25D907102736E125006D799F /* arm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = arm.h; sourceTree = "<group>"; };
+		25D907112736E125006D799F /* x86.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = x86.h; sourceTree = "<group>"; };
+		25D907122736E125006D799F /* ppc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ppc.h; sourceTree = "<group>"; };
+		25D907132736E125006D799F /* arm64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = arm64.h; sourceTree = "<group>"; };
+		25D907142736E125006D799F /* xcore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xcore.h; sourceTree = "<group>"; };
+		25D907152736E125006D799F /* platform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
+		25D907162736E125006D799F /* kern_patcher.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = kern_patcher.hpp; sourceTree = "<group>"; };
+		25D907172736E125006D799F /* hde32.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hde32.h; sourceTree = "<group>"; };
+		25D907182736E125006D799F /* kern_compat.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = kern_compat.hpp; sourceTree = "<group>"; };
+		25D907192736E125006D799F /* kern_api.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = kern_api.hpp; sourceTree = "<group>"; };
+		25D9071A2736E125006D799F /* kern_util.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = kern_util.hpp; sourceTree = "<group>"; };
+		25D9071D2736E125006D799F /* entry64.S */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.asm; path = entry64.S; sourceTree = "<group>"; };
+		25D9071E2736E125006D799F /* build.tool */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = build.tool; sourceTree = "<group>"; };
+		25D9071F2736E125006D799F /* entry32.S */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.asm; path = entry32.S; sourceTree = "<group>"; };
+		25D907202736E125006D799F /* wrappers.inc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.pascal; path = wrappers.inc; sourceTree = "<group>"; };
+		25D907212736E125006D799F /* plugin_start.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = plugin_start.cpp; sourceTree = "<group>"; };
+		25D907272736E2B2006D799F /* AmbientLightValue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AmbientLightValue.hpp; sourceTree = "<group>"; };
+		25D907282736E2B2006D799F /* AmbientLightValue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AmbientLightValue.cpp; sourceTree = "<group>"; };
+		25DBA9722836A77700459629 /* SurfaceHIDNub.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SurfaceHIDNub.cpp; sourceTree = "<group>"; };
+		25DBA9732836A77700459629 /* SurfaceHIDNub.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SurfaceHIDNub.hpp; sourceTree = "<group>"; };
+		25E5B47529919DCB007F21D4 /* BigSurfaceHIDDriver.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BigSurfaceHIDDriver.xcodeproj; path = BigSurfaceHIDDriver/BigSurfaceHIDDriver.xcodeproj; sourceTree = "<group>"; };
+		25E5B4C62991ACE7007F21D4 /* SurfaceManagementEngineClient.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SurfaceManagementEngineClient.hpp; sourceTree = "<group>"; };
+		25E5B4C72991ACE7007F21D4 /* SurfaceManagementEngineDriver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SurfaceManagementEngineDriver.cpp; sourceTree = "<group>"; };
+		25E5B4C82991ACE7007F21D4 /* SurfaceManagementEngineDriver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SurfaceManagementEngineDriver.hpp; sourceTree = "<group>"; };
+		25E5B4C92991ACE7007F21D4 /* MEIProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEIProtocol.h; sourceTree = "<group>"; };
+		25E5B4CA2991ACE7007F21D4 /* SurfaceManagementEngineClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SurfaceManagementEngineClient.cpp; sourceTree = "<group>"; };
+		25EA2A7C2836412B00525325 /* SurfaceBatteryNub.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SurfaceBatteryNub.cpp; sourceTree = "<group>"; };
+		25EA2A7D2836412B00525325 /* SurfaceBatteryNub.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SurfaceBatteryNub.hpp; sourceTree = "<group>"; };
+		7BE66D8F258AC5DC003CA4AD /* libkmod.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libkmod.a; path = ../MacKernelSDK/Library/x86_64/libkmod.a; sourceTree = "<group>"; };
+		AC94C8382119E50400D26081 /* VoodooI2CSynaptics.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VoodooI2CSynaptics.xcodeproj; path = "../../VoodooI2C Satellites/VoodooI2CSynaptics/VoodooI2CSynaptics.xcodeproj"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		25B97D88260B950E00657C76 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				25B97D89260B950E00657C76 /* libkmod.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2518A2F22734F6AA00B0D631 /* SurfaceAmbientLightSensor */ = {
+			isa = PBXGroup;
+			children = (
+				2518A2F52734F6AA00B0D631 /* APDS9960Constants.h */,
+				2518A2F42734F6AA00B0D631 /* SurfaceAmbientLightSensorDriver.cpp */,
+				2518A2F32734F6AA00B0D631 /* SurfaceAmbientLightSensorDriver.hpp */,
+				25D907282736E2B2006D799F /* AmbientLightValue.cpp */,
+				25D907272736E2B2006D799F /* AmbientLightValue.hpp */,
+			);
+			path = SurfaceAmbientLightSensor;
+			sourceTree = "<group>";
+		};
+		2524C0A326F3233A00CAAF12 /* SurfaceButton */ = {
+			isa = PBXGroup;
+			children = (
+				259040EB26FC0BB200D605D0 /* HIDReport.hpp */,
+				259040E726FC065400D605D0 /* SurfaceButtonDevice.cpp */,
+				259040E826FC065400D605D0 /* SurfaceButtonDevice.hpp */,
+				2524C0A426F3233A00CAAF12 /* SurfaceButtonDriver.cpp */,
+				2524C0A526F3233A00CAAF12 /* SurfaceButtonDriver.hpp */,
+			);
+			path = SurfaceButton;
+			sourceTree = "<group>";
+		};
+		2597316F2738B01F00A7F7C1 /* SurfaceBattery */ = {
+			isa = PBXGroup;
+			children = (
+				259731712738B01F00A7F7C1 /* SurfaceACAdapter.cpp */,
+				259731792738B01F00A7F7C1 /* SurfaceACAdapter.hpp */,
+				259731752738B01F00A7F7C1 /* SurfaceBattery.cpp */,
+				259731762738B01F00A7F7C1 /* SurfaceBattery.hpp */,
+				259731742738B01F00A7F7C1 /* BatteryManager.cpp */,
+				2597317C2738B01F00A7F7C1 /* BatteryManager.hpp */,
+				259731772738B01F00A7F7C1 /* BatteryManagerState.hpp */,
+				259731782738B01F00A7F7C1 /* KeyImplementations.cpp */,
+				259731702738B01F00A7F7C1 /* KeyImplementations.hpp */,
+				2597317B2738B01F00A7F7C1 /* SurfaceBatteryDriver.cpp */,
+				259731722738B01F00A7F7C1 /* SurfaceBatteryDriver.hpp */,
+				2597318B2738B2BA00A7F7C1 /* SurfaceSMBusController.cpp */,
+				2597318A2738B2BA00A7F7C1 /* SurfaceSMBusController.hpp */,
+			);
+			path = SurfaceBattery;
+			sourceTree = "<group>";
+		};
+		25B97D6E260B943E00657C76 /* BigSurface */ = {
+			isa = PBXGroup;
+			children = (
+				AC0955711F4ED49E0052E343 /* Dependencies */,
+				2524C0A326F3233A00CAAF12 /* SurfaceButton */,
+				2518A2F22734F6AA00B0D631 /* SurfaceAmbientLightSensor */,
+				25C8D7E727359FCD00F58956 /* SurfaceSerialHub */,
+				25DBA9762836A78900459629 /* SurfaceSerialHubDevices */,
+				2597316F2738B01F00A7F7C1 /* SurfaceBattery */,
+				25E5B4C52991ACE7007F21D4 /* SurfaceManagementEngine */,
+				25506BA929929D7A007F59BF /* helpers.hpp */,
+				25B97E43260BA33B00657C76 /* Info.plist */,
+			);
+			path = BigSurface;
+			sourceTree = "<group>";
+		};
+		25C8D7E727359FCD00F58956 /* SurfaceSerialHub */ = {
+			isa = PBXGroup;
+			children = (
+				25C8D7E827359FCD00F58956 /* SerialProtocol.h */,
+				25C8D7E927359FCD00F58956 /* SurfaceSerialHubDriver.cpp */,
+				25C8D7EA27359FCD00F58956 /* SurfaceSerialHubDriver.hpp */,
+			);
+			path = SurfaceSerialHub;
+			sourceTree = "<group>";
+		};
+		25CBB35C2733D4C1009B568B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				25CBB3602733D4C1009B568B /* VoodooGPIO.kext */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		25CBB3612733D4C9009B568B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				25CBB3652733D4C9009B568B /* VoodooSerial.kext */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		25CDE61A285F291D003FB4C4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				25CDE61E285F291D003FB4C4 /* VoodooInput.kext */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		25D906492736DB7F006D799F /* VirtualSMCSDK */ = {
+			isa = PBXGroup;
+			children = (
+				25D9064A2736DB7F006D799F /* kern_smcinfo.hpp */,
+				25D9064B2736DB7F006D799F /* kern_vsmcapi.hpp */,
+				25D9064C2736DB7F006D799F /* AppleSmc.h */,
+				25D9064D2736DB7F006D799F /* kern_keyvalue.hpp */,
+				25D9064E2736DB7F006D799F /* kern_value.hpp */,
+				25D9064F2736DB7F006D799F /* AppleSmcBridge.hpp */,
+			);
+			name = VirtualSMCSDK;
+			path = VirtualSMC.kext/Contents/Resources/VirtualSMCSDK;
+			sourceTree = "<group>";
+		};
+		25D906A72736DC1A006D799F /* LiluSDK */ = {
+			isa = PBXGroup;
+			children = (
+				25D906F82736E125006D799F /* Headers */,
+				25D9071B2736E125006D799F /* Library */,
+			);
+			name = LiluSDK;
+			sourceTree = "<group>";
+		};
+		25D906F82736E125006D799F /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				25D906F92736E125006D799F /* kern_config.hpp */,
+				25D906FA2736E125006D799F /* hde64.h */,
+				25D906FB2736E125006D799F /* kern_time.hpp */,
+				25D906FC2736E125006D799F /* kern_nvram.hpp */,
+				25D906FD2736E125006D799F /* kern_cpu.hpp */,
+				25D906FE2736E125006D799F /* kern_devinfo.hpp */,
+				25D906FF2736E125006D799F /* kern_efi.hpp */,
+				25D907002736E125006D799F /* kern_policy.hpp */,
+				25D907012736E125006D799F /* kern_user.hpp */,
+				25D907022736E125006D799F /* plugin_start.hpp */,
+				25D907032736E125006D799F /* kern_iokit.hpp */,
+				25D907042736E125006D799F /* kern_crypto.hpp */,
+				25D907052736E125006D799F /* kern_mach.hpp */,
+				25D907062736E125006D799F /* kern_version.hpp */,
+				25D907072736E125006D799F /* kern_compression.hpp */,
+				25D907082736E125006D799F /* kern_file.hpp */,
+				25D907092736E125006D799F /* kern_rtc.hpp */,
+				25D9070A2736E125006D799F /* kern_disasm.hpp */,
+				25D9070B2736E125006D799F /* capstone */,
+				25D907162736E125006D799F /* kern_patcher.hpp */,
+				25D907172736E125006D799F /* hde32.h */,
+				25D907182736E125006D799F /* kern_compat.hpp */,
+				25D907192736E125006D799F /* kern_api.hpp */,
+				25D9071A2736E125006D799F /* kern_util.hpp */,
+			);
+			name = Headers;
+			path = Lilu.kext/Contents/Resources/Headers;
+			sourceTree = "<group>";
+		};
+		25D9070B2736E125006D799F /* capstone */ = {
+			isa = PBXGroup;
+			children = (
+				25D9070C2736E125006D799F /* capstone.h */,
+				25D9070D2736E125006D799F /* mips.h */,
+				25D9070E2736E125006D799F /* sparc.h */,
+				25D9070F2736E125006D799F /* systemz.h */,
+				25D907102736E125006D799F /* arm.h */,
+				25D907112736E125006D799F /* x86.h */,
+				25D907122736E125006D799F /* ppc.h */,
+				25D907132736E125006D799F /* arm64.h */,
+				25D907142736E125006D799F /* xcore.h */,
+				25D907152736E125006D799F /* platform.h */,
+			);
+			path = capstone;
+			sourceTree = "<group>";
+		};
+		25D9071B2736E125006D799F /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				25D9071C2736E125006D799F /* wrappers */,
+				25D907212736E125006D799F /* plugin_start.cpp */,
+			);
+			name = Library;
+			path = Lilu.kext/Contents/Resources/Library;
+			sourceTree = "<group>";
+		};
+		25D9071C2736E125006D799F /* wrappers */ = {
+			isa = PBXGroup;
+			children = (
+				25D9071D2736E125006D799F /* entry64.S */,
+				25D9071E2736E125006D799F /* build.tool */,
+				25D9071F2736E125006D799F /* entry32.S */,
+				25D907202736E125006D799F /* wrappers.inc */,
+			);
+			path = wrappers;
+			sourceTree = "<group>";
+		};
+		25DBA9762836A78900459629 /* SurfaceSerialHubDevices */ = {
+			isa = PBXGroup;
+			children = (
+				25EA2A7C2836412B00525325 /* SurfaceBatteryNub.cpp */,
+				25EA2A7D2836412B00525325 /* SurfaceBatteryNub.hpp */,
+				25DBA9722836A77700459629 /* SurfaceHIDNub.cpp */,
+				25DBA9732836A77700459629 /* SurfaceHIDNub.hpp */,
+			);
+			path = SurfaceSerialHubDevices;
+			sourceTree = "<group>";
+		};
+		25E5B47629919DCB007F21D4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				25E5B47A29919DCC007F21D4 /* BigSurfaceHIDDriver.kext */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		25E5B4C52991ACE7007F21D4 /* SurfaceManagementEngine */ = {
+			isa = PBXGroup;
+			children = (
+				25E5B4C92991ACE7007F21D4 /* MEIProtocol.h */,
+				25E5B4CA2991ACE7007F21D4 /* SurfaceManagementEngineClient.cpp */,
+				25E5B4C62991ACE7007F21D4 /* SurfaceManagementEngineClient.hpp */,
+				25E5B4C72991ACE7007F21D4 /* SurfaceManagementEngineDriver.cpp */,
+				25E5B4C82991ACE7007F21D4 /* SurfaceManagementEngineDriver.hpp */,
+			);
+			path = SurfaceManagementEngine;
+			sourceTree = "<group>";
+		};
+		7BE66D8E258AC5DC003CA4AD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7BE66D8F258AC5DC003CA4AD /* libkmod.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AC0955711F4ED49E0052E343 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				25D906A72736DC1A006D799F /* LiluSDK */,
+				25D906492736DB7F006D799F /* VirtualSMCSDK */,
+				25B97DB8260B971000657C76 /* VoodooGPIO.xcodeproj */,
+				25813612272D6A2800EED5C9 /* VoodooSerial.xcodeproj */,
+				25CDE619285F291D003FB4C4 /* VoodooInput.xcodeproj */,
+				25E5B47529919DCB007F21D4 /* BigSurfaceHIDDriver.xcodeproj */,
+			);
+			name = Dependencies;
+			path = ../../Dependencies;
+			sourceTree = "<group>";
+		};
+		AC2603A61F2F294000CF238F = {
+			isa = PBXGroup;
+			children = (
+				25B97D6E260B943E00657C76 /* BigSurface */,
+				AC2603B11F2F294000CF238F /* Products */,
+				7BE66D8E258AC5DC003CA4AD /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		AC2603B11F2F294000CF238F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				25B97DA5260B950E00657C76 /* BigSurface.kext */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AC94C8392119E50400D26081 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AC94C83D2119E50400D26081 /* VoodooI2CSynaptics.kext */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		25B97D8A260B950E00657C76 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2518A2F62734F6AA00B0D631 /* SurfaceAmbientLightSensorDriver.hpp in Headers */,
+				25EA2A7F2836412B00525325 /* SurfaceBatteryNub.hpp in Headers */,
+				25D907292736E2B2006D799F /* AmbientLightValue.hpp in Headers */,
+				2518A2F82734F6AA00B0D631 /* APDS9960Constants.h in Headers */,
+				25506BAA29929D7A007F59BF /* helpers.hpp in Headers */,
+				2524C0A726F3233A00CAAF12 /* SurfaceButtonDriver.hpp in Headers */,
+				25C8D7EB27359FCD00F58956 /* SerialProtocol.h in Headers */,
+				25E5B4CE2991ACE7007F21D4 /* MEIProtocol.h in Headers */,
+				25C8D7ED27359FCD00F58956 /* SurfaceSerialHubDriver.hpp in Headers */,
+				25DBA9752836A77700459629 /* SurfaceHIDNub.hpp in Headers */,
+				259040EC26FC0BB200D605D0 /* HIDReport.hpp in Headers */,
+				25E5B4CB2991ACE7007F21D4 /* SurfaceManagementEngineClient.hpp in Headers */,
+				259040EA26FC065400D605D0 /* SurfaceButtonDevice.hpp in Headers */,
+				25E5B4CD2991ACE7007F21D4 /* SurfaceManagementEngineDriver.hpp in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		25B97D6F260B950E00657C76 /* BigSurface */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 25B97DA2260B950E00657C76 /* Build configuration list for PBXNativeTarget "BigSurface" */;
+			buildPhases = (
+				25B97D8A260B950E00657C76 /* Headers */,
+				25B97D74260B950E00657C76 /* Sources */,
+				25B97D88260B950E00657C76 /* Frameworks */,
+				25B97DA0260B950E00657C76 /* Resources */,
+				25B97DA1260B950E00657C76 /* Add Plugins */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				25D49D8F2854EE92008CAAA5 /* PBXTargetDependency */,
+				25CBB36B2733D50A009B568B /* PBXTargetDependency */,
+				25CDE626285F2972003FB4C4 /* PBXTargetDependency */,
+				25E5B47F29919F2C007F21D4 /* PBXTargetDependency */,
+			);
+			name = BigSurface;
+			productName = VoodooI2C;
+			productReference = 25B97DA5260B950E00657C76 /* BigSurface.kext */;
+			productType = "com.apple.product-type.kernel-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AC2603A71F2F294000CF238F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1410;
+				ORGANIZATIONNAME = "Xia Shangning";
+				TargetAttributes = {
+					25B97D6F260B950E00657C76 = {
+						DevelopmentTeam = K8RXBXZGN4;
+						ProvisioningStyle = Manual;
+					};
+				};
+			};
+			buildConfigurationList = AC2603AA1F2F294000CF238F /* Build configuration list for PBXProject "BigSurface" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AC2603A61F2F294000CF238F;
+			productRefGroup = AC2603B11F2F294000CF238F /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 25E5B47629919DCB007F21D4 /* Products */;
+					ProjectRef = 25E5B47529919DCB007F21D4 /* BigSurfaceHIDDriver.xcodeproj */;
+				},
+				{
+					ProductGroup = 25CBB35C2733D4C1009B568B /* Products */;
+					ProjectRef = 25B97DB8260B971000657C76 /* VoodooGPIO.xcodeproj */;
+				},
+				{
+					ProductGroup = AC94C8392119E50400D26081 /* Products */;
+					ProjectRef = AC94C8382119E50400D26081 /* VoodooI2CSynaptics.xcodeproj */;
+				},
+				{
+					ProductGroup = 25CDE61A285F291D003FB4C4 /* Products */;
+					ProjectRef = 25CDE619285F291D003FB4C4 /* VoodooInput.xcodeproj */;
+				},
+				{
+					ProductGroup = 25CBB3612733D4C9009B568B /* Products */;
+					ProjectRef = 25813612272D6A2800EED5C9 /* VoodooSerial.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				25B97D6F260B950E00657C76 /* BigSurface */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		25CBB3602733D4C1009B568B /* VoodooGPIO.kext */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = VoodooGPIO.kext;
+			remoteRef = 25CBB35F2733D4C1009B568B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		25CBB3652733D4C9009B568B /* VoodooSerial.kext */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = VoodooSerial.kext;
+			remoteRef = 25CBB3642733D4C9009B568B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		25CDE61E285F291D003FB4C4 /* VoodooInput.kext */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = VoodooInput.kext;
+			remoteRef = 25CDE61D285F291D003FB4C4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		25E5B47A29919DCC007F21D4 /* BigSurfaceHIDDriver.kext */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = BigSurfaceHIDDriver.kext;
+			remoteRef = 25E5B47929919DCC007F21D4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AC94C83D2119E50400D26081 /* VoodooI2CSynaptics.kext */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = VoodooI2CSynaptics.kext;
+			remoteRef = AC94C83C2119E50400D26081 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		25B97DA0260B950E00657C76 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		25B97DA1260B950E00657C76 /* Add Plugins */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Add Plugins";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "mkdir -p \"${BUILT_PRODUCTS_DIR}/BigSurface.kext/Contents/PlugIns\"\nrm -rf \"${BUILT_PRODUCTS_DIR}/BigSurface.kext/Contents/PlugIns/VoodooGPIO.kext\"\nmv \"${BUILT_PRODUCTS_DIR}/VoodooGPIO.kext\" \"${BUILT_PRODUCTS_DIR}/BigSurface.kext/Contents/PlugIns\"\n\nrm -rf \"${BUILT_PRODUCTS_DIR}/BigSurface.kext/Contents/PlugIns/VoodooSerial.kext\"\nmv \"${BUILT_PRODUCTS_DIR}/VoodooSerial.kext\" \"${BUILT_PRODUCTS_DIR}/BigSurface.kext/Contents/PlugIns\"\n\nrm -rf \"${BUILT_PRODUCTS_DIR}/BigSurface.kext/Contents/PlugIns/VoodooInput.kext\"\nmv \"${BUILT_PRODUCTS_DIR}/VoodooInput.kext\" \"${BUILT_PRODUCTS_DIR}/BigSurface.kext/Contents/PlugIns\"\n\nrm -rf \"${BUILT_PRODUCTS_DIR}/BigSurface.kext/Contents/PlugIns/BigSurfaceHIDDriver.kext\"\nmv \"${BUILT_PRODUCTS_DIR}/BigSurfaceHIDDriver.kext\" \"${BUILT_PRODUCTS_DIR}/BigSurface.kext/Contents/PlugIns\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		25B97D74260B950E00657C76 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				25DBA9742836A77700459629 /* SurfaceHIDNub.cpp in Sources */,
+				25C8D7EC27359FCD00F58956 /* SurfaceSerialHubDriver.cpp in Sources */,
+				25D9072A2736E2B2006D799F /* AmbientLightValue.cpp in Sources */,
+				259040E926FC065400D605D0 /* SurfaceButtonDevice.cpp in Sources */,
+				2518A2F72734F6AA00B0D631 /* SurfaceAmbientLightSensorDriver.cpp in Sources */,
+				25E5B4CC2991ACE7007F21D4 /* SurfaceManagementEngineDriver.cpp in Sources */,
+				25EA2A7E2836412B00525325 /* SurfaceBatteryNub.cpp in Sources */,
+				25E5B4CF2991ACE7007F21D4 /* SurfaceManagementEngineClient.cpp in Sources */,
+				2524C0A626F3233A00CAAF12 /* SurfaceButtonDriver.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		25CBB36B2733D50A009B568B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = VoodooSerial;
+			targetProxy = 25CBB36A2733D50A009B568B /* PBXContainerItemProxy */;
+		};
+		25CDE626285F2972003FB4C4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = VoodooInput;
+			targetProxy = 25CDE625285F2972003FB4C4 /* PBXContainerItemProxy */;
+		};
+		25D49D8F2854EE92008CAAA5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = VoodooGPIO;
+			targetProxy = 25D49D8E2854EE92008CAAA5 /* PBXContainerItemProxy */;
+		};
+		25E5B47F29919F2C007F21D4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BigSurfaceHIDDriver;
+			targetProxy = 25E5B47E29919F2C007F21D4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		25B97DA3260B950E00657C76 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_DEADCODE_DEADSTORES = YES;
+				CLANG_ANALYZER_DIVIDE_BY_ZERO = NO;
+				CLANG_ANALYZER_NULL_DEREFERENCE = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = YES;
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1.2.0;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = K8RXBXZGN4;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../Dependencies/VoodooInput/Debug/VoodooInput.kext/Contents/Resources",
+					"$(PROJECT_DIR)/../Dependencies/VirtualSMC.kext/Contents/Resources/",
+					"$(PROJECT_DIR)/../Dependencies/Lilu.kext/Contents/Resources/",
+				);
+				INFOPLIST_FILE = BigSurface/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021 Xia Shangning. All rights reserved.";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../MacKernelSDK/Library/x86_64",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MARKETING_VERSION = 1.2.0;
+				MODULE_NAME = com.xavier.BigSurface;
+				MODULE_VERSION = 1.0.6;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xavier.BigSurface;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				WARNING_CFLAGS = "";
+				WRAPPER_EXTENSION = kext;
+			};
+			name = Debug;
+		};
+		25B97DA4260B950E00657C76 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_DEADCODE_DEADSTORES = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = YES;
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1.2.0;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = K8RXBXZGN4;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_OPTIMIZATION_LEVEL = fast;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../Dependencies/VoodooInput/Debug/VoodooInput.kext/Contents/Resources",
+					"$(PROJECT_DIR)/../Dependencies/VirtualSMC.kext/Contents/Resources/",
+					"$(PROJECT_DIR)/../Dependencies/Lilu.kext/Contents/Resources/",
+				);
+				INFOPLIST_FILE = BigSurface/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021 Xia Shangning. All rights reserved.";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../MacKernelSDK/Library/x86_64",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MARKETING_VERSION = 1.2.0;
+				MODULE_NAME = com.xavier.BigSurface;
+				MODULE_VERSION = 1.0.6;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xavier.BigSurface;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				WARNING_CFLAGS = "";
+				WRAPPER_EXTENSION = kext;
+			};
+			name = Release;
+		};
+		AC2603B81F2F294000CF238F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = x86_64;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				KERNEL_EXTENSION_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../MacKernelSDK/Headers";
+				KERNEL_FRAMEWORK_HEADERS = "$(PROJECT_DIR)/../MacKernelSDK/Headers";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				WARNING_CFLAGS = "";
+			};
+			name = Debug;
+		};
+		AC2603B91F2F294000CF238F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = x86_64;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = fast;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				KERNEL_EXTENSION_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../MacKernelSDK/Headers";
+				KERNEL_FRAMEWORK_HEADERS = "$(PROJECT_DIR)/../MacKernelSDK/Headers";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				WARNING_CFLAGS = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		25B97DA2260B950E00657C76 /* Build configuration list for PBXNativeTarget "BigSurface" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				25B97DA3260B950E00657C76 /* Debug */,
+				25B97DA4260B950E00657C76 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AC2603AA1F2F294000CF238F /* Build configuration list for PBXProject "BigSurface" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AC2603B81F2F294000CF238F /* Debug */,
+				AC2603B91F2F294000CF238F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AC2603A71F2F294000CF238F /* Project object */;
+}

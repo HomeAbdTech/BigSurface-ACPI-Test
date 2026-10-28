@@ -1,0 +1,11 @@
+BigSurface source-only experimental patch: use ACPI/SMCBatteryManager battery reporting.
+
+Changes:
+- Excludes SurfaceBattery/ battery reporting implementation from Xcode compile/link phases.
+- Removes Surface Battery and Surface Battery SMBus Controller IOKit personalities.
+- Retains SurfaceBatteryNub and SurfaceSerialHub, including HID nub and input functionality.
+- Leaves existing ACPI BAT1 changes and SMCBatteryManager untouched.
+
+WARNING: NOT COMPILED OR BOOT TESTED. Dependencies submodule directories in supplied archive are empty.
+Obtain exact compatible dependencies, Xcode and MacKernelSDK, build and validate before installation.
+Do not install this source archive as an EFI or kext. Keep recovery backup.
