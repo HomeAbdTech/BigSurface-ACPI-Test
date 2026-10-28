@@ -44,3 +44,25 @@ jobs:
           echo "=== Xcode targets ==="
           xcodebuild -list -project BigSurface/BigSurface.xcodeproj
 
+
+      - name: Compare battery patch with upstream
+        shell: bash
+        run: |
+          echo "=== Project configuration differences ==="
+          diff -u \
+            /tmp/BigSurface-upstream/BigSurface.xcodeproj/project.pbxproj \
+            BigSurface/BigSurface.xcodeproj/project.pbxproj || true
+
+          echo "=== Info.plist differences ==="
+          diff -u \
+            /tmp/BigSurface-upstream/BigSurface/Info.plist \
+            BigSurface/BigSurface/Info.plist || true
+
+          echo "=== BatteryManager references in patched source ==="
+          grep -Rn 'BatteryManager' BigSurface/BigSurface \
+            --include='*.cpp' --include='*.hpp' \
+            --include='*.h' || true
+
+          echo "=== Battery source files ==="
+          find BigSurface/BigSurface/SurfaceBattery \
+            -type f | sort
