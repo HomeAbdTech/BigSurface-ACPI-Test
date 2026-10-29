@@ -52,6 +52,7 @@ bool SurfaceHIDNub::start(IOService *provider) {
 
 void SurfaceHIDNub::stop(IOService *provider) {
     unregisterHIDEvent(target);
+    PMstop();
     super::stop(provider);
 }
 
