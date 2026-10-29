@@ -1,0 +1,216 @@
+name: BigSurface 1.1.0 (v6.5) minus battery + touchpad fix
+
+# Builds the exact upstream 1.1.0 release source (tag v6.5, with its pinned
+# submodules) and removes ONLY the SurfaceBattery code + personalities, so it
+# can coexist with SMCBatteryManager. Nothing else is changed.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  UPSTREAM_TAG: v6.5          # MARKETING_VERSION 1.1.0, Feb 2023
+  LILU_TAG: 1.6.4             # Lilu release from the same period
+  VSMC_TAG: 1.3.1             # VirtualSMC release from the same period
+
+jobs:
+  build:
+    runs-on: macos-14
+    timeout-minutes: 30
+
+    steps:
+      - name: Clone upstream at the 1.1.0 release tag
+        run: |
+          git clone --branch "$UPSTREAM_TAG" --recurse-submodules \
+            https://github.com/Xiashangning/BigSurface.git src
+          cd src
+          echo "=== Upstream commit ==="; git rev-parse HEAD
+          echo "=== Submodules ==="; git submodule status --recursive
+
+      - name: Install Lilu and VirtualSMC SDKs (pinned)
+        run: |
+          git clone --depth 1 --branch "$LILU_TAG" https://github.com/acidanthera/Lilu.git /tmp/Lilu
+          git clone --depth 1 --branch "$VSMC_TAG" https://github.com/acidanthera/VirtualSMC.git /tmp/VirtualSMC
+          mkdir -p src/Dependencies/Lilu.kext/Contents/Resources
+          cp -R /tmp/Lilu/Lilu/Headers src/Dependencies/Lilu.kext/Contents/Resources/
+          cp -R /tmp/Lilu/Lilu/Library src/Dependencies/Lilu.kext/Contents/Resources/
+          mkdir -p src/Dependencies/VirtualSMC.kext/Contents/Resources
+          cp -R /tmp/VirtualSMC/VirtualSMCSDK src/Dependencies/VirtualSMC.kext/Contents/Resources/
+
+      - name: Remove SurfaceBattery from build phases
+        working-directory: src
+        run: |
+          python3 - <<'EOF'
+          import re
+          p = "BigSurface/BigSurface.xcodeproj/project.pbxproj"
+          ids = """259731842738B01F00A7F7C1 259731892738B01F00A7F7C1 2597317F2738B01F00A7F7C1
+                   259731832738B01F00A7F7C1 2597318C2738B2BA00A7F7C1 259731862738B01F00A7F7C1
+                   2597317D2738B01F00A7F7C1 259731812738B01F00A7F7C1 259731822738B01F00A7F7C1
+                   259731882738B01F00A7F7C1 259731852738B01F00A7F7C1 2597318D2738B2BA00A7F7C1
+                   2597317E2738B01F00A7F7C1""".split()
+          lines = open(p).read().split("\n")
+          out, removed = [], 0
+          for l in lines:
+              s = l.strip()
+              if any(s.startswith(i + " /*") for i in ids) and re.search(r" in (Headers|Sources) \*/,$", s):
+                  removed += 1
+                  continue
+              out.append(l)
+          open(p, "w").write("\n".join(out))
+          print("removed build-phase entries:", removed)
+          assert removed == 13, "expected 13 entries"
+          EOF
+          plutil -lint BigSurface/BigSurface.xcodeproj/project.pbxproj
+
+      - name: Remove battery IOKit personalities
+        working-directory: src
+        run: |
+          PL=BigSurface/BigSurface/Info.plist
+          /usr/libexec/PlistBuddy -c "Delete ':IOKitPersonalities:Surface Battery'" "$PL"
+          /usr/libexec/PlistBuddy -c "Delete ':IOKitPersonalities:Surface Battery SMBus Controller'" "$PL"
+          plutil -lint "$PL"
+          echo "=== Remaining personalities ==="
+          /usr/libexec/PlistBuddy -c "Print :IOKitPersonalities" "$PL" | grep -E "^    [A-Z]" || true
+
+      - name: Patch Type Cover touchpad driver (USB shutdown fix)
+        working-directory: src
+        run: |
+          cat > /tmp/patch_touchpad.py <<'PYEOF'
+          # Patches BigSurfaceHIDDriver's multitouch event driver so that, on USB
+          # transports (the Surface Type Cover), it:
+          #   1. does not join the USB HID interface's power tree, and
+          #   2. closes the HID interface in didTerminate (Apple's IOHIDEventDriver
+          #      pattern) instead of willTerminate.
+          # I2C devices (the touchscreen) keep the original behaviour.
+          import sys, pathlib
+          root = pathlib.Path(sys.argv[1])
+          hpp = root / "VoodooI2CMultitouchHIDEventDriver.hpp"
+          cpp = root / "VoodooI2CMultitouchHIDEventDriver.cpp"
+
+          def sub(path, old, new, label):
+              s = path.read_text()
+              n = s.count(old)
+              if n != 1:
+                  sys.exit(f"patch '{label}' expected 1 match, found {n}")
+              path.write_text(s.replace(old, new))
+              print("applied:", label)
+
+          sub(hpp,
+              "    bool willTerminate(IOService* provider, IOOptionBits options) override;",
+              "    bool willTerminate(IOService* provider, IOOptionBits options) override;\n"
+              "    bool didTerminate(IOService* provider, IOOptionBits options, bool* defer) override;",
+              "declare didTerminate")
+
+          sub(hpp,
+              "    bool awake = true;\n    IOHIDInterface* hid_interface;",
+              "    bool awake = true;\n    bool is_usb = false;\n    bool pm_joined = false;\n    IOHIDInterface* hid_interface;",
+              "add flags")
+
+          sub(cpp,
+              """bool VoodooI2CMultitouchHIDEventDriver::willTerminate(IOService* provider, IOOptionBits options) {
+              if (hid_interface->isOpen(this))
+                  hid_interface->close(this);
+
+              return super::willTerminate(provider, options);
+          }""",
+              """bool VoodooI2CMultitouchHIDEventDriver::willTerminate(IOService* provider, IOOptionBits options) {
+              // USB (Type Cover): defer close to didTerminate to avoid racing the
+              // DriverKit HID device teardown at shutdown / reconnect.
+              if (!is_usb && hid_interface && hid_interface->isOpen(this))
+                  hid_interface->close(this);
+
+              return super::willTerminate(provider, options);
+          }
+
+          bool VoodooI2CMultitouchHIDEventDriver::didTerminate(IOService* provider, IOOptionBits options, bool* defer) {
+              if (is_usb && hid_interface && hid_interface->isOpen(this))
+                  hid_interface->close(this);
+
+              return super::didTerminate(provider, options, defer);
+          }""",
+              "willTerminate/didTerminate")
+
+          sub(cpp,
+              """    if (strncmp(transport->getCStringNoCopy(), kIOHIDTransportUSBValue, sizeof(kIOHIDTransportUSBValue)) != 0)
+                  hid_interface->setProperty("VoodooI2CServices Supported", kOSBooleanTrue);""",
+              """    is_usb = (strncmp(transport->getCStringNoCopy(), kIOHIDTransportUSBValue, sizeof(kIOHIDTransportUSBValue)) == 0);
+              if (!is_usb)
+                  hid_interface->setProperty("VoodooI2CServices Supported", kOSBooleanTrue);""",
+              "detect USB")
+
+          sub(cpp,
+              """    PMinit();
+              hid_interface->joinPMtree(this);
+              registerPowerDriver(this, myIOPMPowerStates, kIOPMNumberPowerStates);
+
+              return true;
+          }""",
+              """    // Do not attach to the power tree of a USB (DriverKit) HID interface.
+              if (!is_usb) {
+                  PMinit();
+                  hid_interface->joinPMtree(this);
+                  registerPowerDriver(this, myIOPMPowerStates, kIOPMNumberPowerStates);
+                  pm_joined = true;
+              }
+
+              return true;
+          }""",
+              "skip PM tree on USB")
+
+          sub(cpp,
+              """    OSSafeReleaseNULL(work_loop);
+
+              PMstop();
+
+              super::handleStop(provider);""",
+              """    OSSafeReleaseNULL(work_loop);
+
+              if (pm_joined) {
+                  PMstop();
+                  pm_joined = false;
+              }
+
+              super::handleStop(provider);""",
+              "guard PMstop")
+          PYEOF
+          python3 /tmp/patch_touchpad.py Dependencies/BigSurfaceHIDDriver/BigSurfaceHIDDriver/HIDEventDriver
+
+      - name: Build
+        working-directory: src
+        run: |
+          set -o pipefail
+          xcodebuild -project BigSurface/BigSurface.xcodeproj -scheme BigSurface \
+            -configuration Release -sdk macosx \
+            -derivedDataPath "$RUNNER_TEMP/out" CODE_SIGNING_ALLOWED=NO build \
+            2>&1 | tee "$RUNNER_TEMP/build.log"
+
+      - name: Confirm no BatteryManager class in binary
+        run: |
+          K=$(ls -d "$RUNNER_TEMP"/out/Build/Products/Release/BigSurface.kext)
+          if nm "$K/Contents/MacOS/BigSurface" | grep -q BatteryManager; then
+            echo "BatteryManager symbols still present!"; exit 1
+          fi
+          echo "OK: no BatteryManager symbols"
+          /usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" "$K/Contents/Info.plist"
+          ls "$K/Contents/PlugIns" || true
+          H="$K/Contents/PlugIns/BigSurfaceHIDDriver.kext/Contents/MacOS/BigSurfaceHIDDriver"
+          if nm "$H" | grep -q "VoodooI2CMultitouchHIDEventDriver12didTerminate"; then
+            echo "OK: touchpad patch present"
+          else
+            echo "Touchpad patch NOT present!"; exit 1
+          fi
+
+      - name: Upload build log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-log
+          path: ${{ runner.temp }}/build.log
+
+      - name: Upload kext
+        uses: actions/upload-artifact@v4
+        with:
+          name: BigSurface-1.1.0-NoBattery-TouchpadFix-UNTESTED
+          path: ${{ runner.temp }}/out/Build/Products/Release/*.kext
