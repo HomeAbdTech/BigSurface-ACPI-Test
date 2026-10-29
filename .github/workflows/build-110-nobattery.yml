@@ -1,0 +1,107 @@
+name: BigSurface 1.1.0 (v6.5) minus battery
+
+# Builds the exact upstream 1.1.0 release source (tag v6.5, with its pinned
+# submodules) and removes ONLY the SurfaceBattery code + personalities, so it
+# can coexist with SMCBatteryManager. Nothing else is changed.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  UPSTREAM_TAG: v6.5          # MARKETING_VERSION 1.1.0, Feb 2023
+  LILU_TAG: 1.6.4             # Lilu release from the same period
+  VSMC_TAG: 1.3.1             # VirtualSMC release from the same period
+
+jobs:
+  build:
+    runs-on: macos-14
+    timeout-minutes: 30
+
+    steps:
+      - name: Clone upstream at the 1.1.0 release tag
+        run: |
+          git clone --branch "$UPSTREAM_TAG" --recurse-submodules \
+            https://github.com/Xiashangning/BigSurface.git src
+          cd src
+          echo "=== Upstream commit ==="; git rev-parse HEAD
+          echo "=== Submodules ==="; git submodule status --recursive
+
+      - name: Install Lilu and VirtualSMC SDKs (pinned)
+        run: |
+          git clone --depth 1 --branch "$LILU_TAG" https://github.com/acidanthera/Lilu.git /tmp/Lilu
+          git clone --depth 1 --branch "$VSMC_TAG" https://github.com/acidanthera/VirtualSMC.git /tmp/VirtualSMC
+          mkdir -p src/Dependencies/Lilu.kext/Contents/Resources
+          cp -R /tmp/Lilu/Lilu/Headers src/Dependencies/Lilu.kext/Contents/Resources/
+          cp -R /tmp/Lilu/Lilu/Library src/Dependencies/Lilu.kext/Contents/Resources/
+          mkdir -p src/Dependencies/VirtualSMC.kext/Contents/Resources
+          cp -R /tmp/VirtualSMC/VirtualSMCSDK src/Dependencies/VirtualSMC.kext/Contents/Resources/
+
+      - name: Remove SurfaceBattery from build phases
+        working-directory: src
+        run: |
+          python3 - <<'EOF'
+          import re
+          p = "BigSurface/BigSurface.xcodeproj/project.pbxproj"
+          ids = """259731842738B01F00A7F7C1 259731892738B01F00A7F7C1 2597317F2738B01F00A7F7C1
+                   259731832738B01F00A7F7C1 2597318C2738B2BA00A7F7C1 259731862738B01F00A7F7C1
+                   2597317D2738B01F00A7F7C1 259731812738B01F00A7F7C1 259731822738B01F00A7F7C1
+                   259731882738B01F00A7F7C1 259731852738B01F00A7F7C1 2597318D2738B2BA00A7F7C1
+                   2597317E2738B01F00A7F7C1""".split()
+          lines = open(p).read().split("\n")
+          out, removed = [], 0
+          for l in lines:
+              s = l.strip()
+              if any(s.startswith(i + " /*") for i in ids) and re.search(r" in (Headers|Sources) \*/,$", s):
+                  removed += 1
+                  continue
+              out.append(l)
+          open(p, "w").write("\n".join(out))
+          print("removed build-phase entries:", removed)
+          assert removed == 13, "expected 13 entries"
+          EOF
+          plutil -lint BigSurface/BigSurface.xcodeproj/project.pbxproj
+
+      - name: Remove battery IOKit personalities
+        working-directory: src
+        run: |
+          PL=BigSurface/BigSurface/Info.plist
+          /usr/libexec/PlistBuddy -c "Delete ':IOKitPersonalities:Surface Battery'" "$PL"
+          /usr/libexec/PlistBuddy -c "Delete ':IOKitPersonalities:Surface Battery SMBus Controller'" "$PL"
+          plutil -lint "$PL"
+          echo "=== Remaining personalities ==="
+          /usr/libexec/PlistBuddy -c "Print :IOKitPersonalities" "$PL" | grep -E "^    [A-Z]" || true
+
+      - name: Build
+        working-directory: src
+        run: |
+          set -o pipefail
+          xcodebuild -project BigSurface/BigSurface.xcodeproj -scheme BigSurface \
+            -configuration Release -sdk macosx \
+            -derivedDataPath "$RUNNER_TEMP/out" CODE_SIGNING_ALLOWED=NO build \
+            2>&1 | tee "$RUNNER_TEMP/build.log"
+
+      - name: Confirm no BatteryManager class in binary
+        run: |
+          K=$(ls -d "$RUNNER_TEMP"/out/Build/Products/Release/BigSurface.kext)
+          if nm "$K/Contents/MacOS/BigSurface" | grep -q BatteryManager; then
+            echo "BatteryManager symbols still present!"; exit 1
+          fi
+          echo "OK: no BatteryManager symbols"
+          /usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" "$K/Contents/Info.plist"
+          ls "$K/Contents/PlugIns" || true
+
+      - name: Upload build log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-log
+          path: ${{ runner.temp }}/build.log
+
+      - name: Upload kext
+        uses: actions/upload-artifact@v4
+        with:
+          name: BigSurface-1.1.0-NoBattery-UNTESTED
+          path: ${{ runner.temp }}/out/Build/Products/Release/*.kext
